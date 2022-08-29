@@ -7,6 +7,7 @@ const DB = process.env.DB;
 connectToMongoDB();
 app.use(express.json());
 app.use("/auth", require("./src/routes/user"));
+app.use("/properties", require("./src/routes/property"));
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
