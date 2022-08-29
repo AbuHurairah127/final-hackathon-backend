@@ -3,6 +3,8 @@ const User = require("../models/user");
 const router = express.Router();
 const { body } = require("express-validator");
 const authController = require("./../controllers/user");
+// const authEmployee = require("./../middleware/auth");
+const authUser = require("./../utils/auth");
 //Route -1 creating a new user:No login required
 router.post(
   "/register",
@@ -25,4 +27,6 @@ router.post(
   ],
   authController.login
 );
+// Fetching Users Data
+router.post("/user-data", authUser, authController.userData);
 module.exports = router;

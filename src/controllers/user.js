@@ -77,7 +77,18 @@ const login = async (req, res) => {
     res.status(500).json("Internal server error");
   }
 };
+const userData = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const user = await User.findById(userId).select("-password");
+    res.status(200).json({ user });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json("Internal server error");
+  }
+};
 module.exports = {
   register,
   login,
+  userData,
 };
