@@ -8,7 +8,7 @@ const userSchema = new Schema({
   email: { type: "string", required: true },
   password: { type: "string", required: true },
   phoneNumber: { type: "string", required: true },
-  date: {
+  createdAt: {
     type: Date,
     default: Date.now,
   },
