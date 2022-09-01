@@ -1,8 +1,6 @@
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const JWT_SECRET_KEY = process.env.SECRET_KEY;
 const Property = require("../models/property");
 const { validationResult } = require("express-validator");
+const { findOne } = require("../models/property");
 const fetchAll = async (req, res) => {
   try {
     const properties = await Property.find();
@@ -52,8 +50,70 @@ const addProperty = async (req, res) => {
     res.status(500).json("Some error occurred");
   }
 };
+const updateProperty = async (req, res) => {
+  // logic updateProperty
+  try {
+    const updateProperty = {
+      requirement: req.body.requirement,
+      address: req.body.address,
+      city: req.body.city,
+      finishedType: req.body.finishedType,
+      propertyType: req.body.propertyType,
+      areaCovered: req.body.areaCovered,
+      noOfBedRooms: req.body.noOfBedRooms,
+      noOfBathrooms: req.body.noOfBathrooms,
+      noOfLivingRooms: req.body.noOfLivingRooms,
+      noOfDiningRooms: req.body.noOfDiningRooms,
+      noOfKitchens: req.body.noOfKitchens,
+      noOfReceptionAreas: req.body.noOfReceptionAreas,
+      setAskingPrice: req.body.setAskingPrice,
+      updatedAt: new Date(),
+    };
+    console.log("req.params.id", req.params.id);
+    let property = await Property.findOne(req.param.id);
+    console.log("User's id", req.user.id, "ownerUID", property.ownerUID);
+    property = await Property.findByIdAndUpdate(
+      { _id: req.params.id },
+      updateProperty
+    );
+    let response = {
+      status: 200,
+      message: "successfully updated",
+    };
+    console.log(property);
+    res.json(response);
+  } catch (error) {
+    let response = {
+      status: 401,
+      message: error,
+    };
+    res.json(response);
+  }
+};
+const deleteProperty = async (req, res) => {
+  try {
+    console.log("req.params.id", req.params.id);
+    let property = await Property.findOne(req.param.id);
+    console.log("ownerUID", property.ownerUID);
+    property = await Property.findByIdAndDelete({ _id: req.params.id });
+    let response = {
+      status: 200,
+      message: "Successfully deleted",
+    };
+    console.log(property);
+    res.json(response);
+  } catch (error) {
+    let response = {
+      status: 401,
+      message: error.message,
+    };
+    res.json(response);
+  }
+};
 
 module.exports = {
   addProperty,
+  updateProperty,
   fetchAll,
+  deleteProperty,
 };

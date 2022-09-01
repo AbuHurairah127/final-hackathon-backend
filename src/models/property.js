@@ -18,9 +18,10 @@ const propertySchema = new Schema({
   ownerName: { type: "string", required: true },
   ownerPhoneNumber: { type: "string", required: true },
   ownerUID: { type: "string", required: true },
-  date: {
+  createdAt: {
     type: Date,
     default: Date.now,
   },
+  updatedAt: { type: Date },
 });
 module.exports = mongoose.model("properties", propertySchema);
