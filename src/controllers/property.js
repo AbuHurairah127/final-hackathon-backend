@@ -1,6 +1,7 @@
 const Property = require("../models/property");
 const { validationResult } = require("express-validator");
 const { findOne } = require("../models/property");
+const { response } = require("express");
 const fetchAll = async (req, res) => {
   try {
     const properties = await Property.find();
@@ -8,6 +9,15 @@ const fetchAll = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json("Some error occurred");
+  }
+};
+const userSpecificProperties = async (req, res) => {
+  try {
+    const properties = await Property.find({ ownerUID: req.body.uid });
+    res.json(properties);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Some error occurred.");
   }
 };
 const addProperty = async (req, res) => {
@@ -116,4 +126,5 @@ module.exports = {
   updateProperty,
   fetchAll,
   deleteProperty,
+  userSpecificProperties,
 };

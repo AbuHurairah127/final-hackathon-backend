@@ -18,13 +18,13 @@ const register = async (req, res) => {
     if (isEmail) {
       return res
         .status(400)
-        .json("Sorry a user with this email address already exists.");
+        .send("Sorry a user with this email address already exists.");
     }
     let isUserName = await User.findOne({ userName: req.body.userName });
     if (isUserName) {
       return res
         .status(400)
-        .json("Sorry a user with this username already exists.");
+        .send("Sorry a user with this username already exists.");
     }
     const salt = await bcrypt.genSaltSync(10);
     secPass = await bcrypt.hash(req.body.password, salt);
