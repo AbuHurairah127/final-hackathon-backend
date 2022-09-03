@@ -5,10 +5,6 @@ const propertyController = require("./../controllers/property");
 const authUser = require("./../utils/auth");
 //Route -1 creating a new user:No login required
 router.get("/fetch-all", propertyController.fetchAll);
-router.get(
-  "/fetch-user-specific-properties",
-  propertyController.userSpecificProperties
-);
 router.post("/add-property", authUser, propertyController.addProperty);
 router.put("/update-property/:id", authUser, propertyController.updateProperty);
 router.delete("/delete-property/:id", propertyController.deleteProperty);

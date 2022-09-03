@@ -11,15 +11,7 @@ const fetchAll = async (req, res) => {
     res.status(500).json("Some error occurred");
   }
 };
-const userSpecificProperties = async (req, res) => {
-  try {
-    const properties = await Property.find({ ownerUID: req.body.uid });
-    res.json(properties);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Some error occurred.");
-  }
-};
+
 const addProperty = async (req, res) => {
   try {
     /* Checking if the request body has any errors. If it does, it will return a 400 status code with the
@@ -126,5 +118,4 @@ module.exports = {
   updateProperty,
   fetchAll,
   deleteProperty,
-  userSpecificProperties,
 };
