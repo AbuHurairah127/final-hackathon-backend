@@ -80,9 +80,8 @@ const updateProperty = async (req, res) => {
     );
     let response = {
       status: 200,
-      message: "successfully updated",
+      message: "Successfully Updated",
     };
-    console.log(property);
     res.json(response);
   } catch (error) {
     let response = {
