@@ -24,4 +24,20 @@ const addToWishlist = async (req, res) => {
     res.status(500).json("Some error occurred");
   }
 };
-module.exports = { fetchAll, addToWishlist };
+const deleteFromWishlist = async (req, res) => {
+  try {
+    let wishlist = await Wishlist.findOneAndDelete({ _id: req.param.id });
+    let response = {
+      status: 200,
+      message: "Property has been successfully removed from your wishlist",
+    };
+    res.json({ response });
+  } catch (error) {
+    let response = {
+      status: 500,
+      message: "Some error occurred.",
+    };
+    res.json({ response });
+  }
+};
+module.exports = { fetchAll, addToWishlist, deleteFromWishlist };
