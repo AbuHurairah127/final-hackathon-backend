@@ -42,7 +42,6 @@ const register = async (req, res) => {
     const authToken = jwt.sign(data, JWT_SECRET_KEY);
     res.json({ authToken });
   } catch (error) {
-    console.error(error);
     res.status(500).json("Some error occurred");
   }
 };
@@ -73,7 +72,6 @@ const login = async (req, res) => {
       authToken: authToken,
     });
   } catch (error) {
-    console.error(error);
     res.status(500).json("Internal server error");
   }
 };
@@ -83,7 +81,6 @@ const userData = async (req, res) => {
     const user = await User.findById(userId).select("-password");
     res.status(200).json({ user });
   } catch (error) {
-    console.error(error.message);
     res.status(500).json("Internal server error");
   }
 };

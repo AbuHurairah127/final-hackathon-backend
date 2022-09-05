@@ -8,5 +8,6 @@ router.get("/fetch-all", propertyController.fetchAll);
 router.post("/add-property", authUser, propertyController.addProperty);
 router.put("/update-property/:id", authUser, propertyController.updateProperty);
 router.delete("/delete-property/:id", propertyController.deleteProperty);
+router.post("/filter-property", propertyController.deleteProperty);
 
 module.exports = router;
