@@ -7,7 +7,6 @@ const authUser = (req, res, next) => {
     if (!token) {
       res.status(401).send("Access Denied");
     }
-    console.log(token);
     const data = jwt.verify(token, JWT_SECRET_KEY);
     req.user = data.user;
     next();
