@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(cors());
 app.use("/auth", require("./src/routes/user"));
 app.use("/properties", require("./src/routes/property"));
+app.use("/wishlist", require("./src/routes/wishlist"));
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
