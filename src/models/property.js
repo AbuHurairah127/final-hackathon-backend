@@ -22,8 +22,8 @@ const propertySchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  likes: { type: Number, default: 0 },
-  likedByUsers: [String],
+  likes: { type: Number },
+  likedByUsers: { type: [String] },
   updatedAt: { type: Date },
 });
 module.exports = mongoose.model("properties", propertySchema);

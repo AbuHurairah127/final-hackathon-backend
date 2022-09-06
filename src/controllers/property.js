@@ -85,6 +85,33 @@ const updateProperty = async (req, res) => {
     res.json(response);
   }
 };
+const likeProperty = async (req, res) => {
+  // logic updateProperty
+  try {
+    const likeProperty = {
+      propertyID: req.param.id,
+      likes: req.body.likes,
+      likedByUsers: req.body.likedByUsers,
+    };
+    let likedProperty = await Property.findOne(req.param.id);
+    likedProperty = await Property.findByIdAndUpdate(
+      { _id: req.params.id },
+      likeProperty
+    );
+    let response = {
+      status: 200,
+      message: "Successfully added to your wishlist.",
+    };
+    console.log(response, "response");
+    res.json(response);
+  } catch (error) {
+    let response = {
+      status: 401,
+      message: error,
+    };
+    res.json(response);
+  }
+};
 const deleteProperty = async (req, res) => {
   try {
     let property = await Property.findOne(req.param.id);
@@ -107,4 +134,5 @@ module.exports = {
   updateProperty,
   fetchAll,
   deleteProperty,
+  likeProperty,
 };
