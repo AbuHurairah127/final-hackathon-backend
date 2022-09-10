@@ -12,6 +12,8 @@ const propertySchema = new Schema({
   noOfBathrooms: { type: String, required: true },
   noOfLivingRooms: { type: String },
   noOfDiningRooms: { type: String },
+  photoURL: { type: String },
+  photoRef: { type: String },
   noOfKitchens: { type: String, required: true },
   noOfReceptionAreas: { type: String, required: true },
   setAskingPrice: { type: String, required: true },

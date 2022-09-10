@@ -36,6 +36,9 @@ const addProperty = async (req, res) => {
       ownerName: req.body.ownerName,
       ownerPhoneNumber: req.body.ownerPhoneNumber,
       ownerUID: req.body.ownerUID,
+      likes: req.body.likes,
+      photoURL: req.body.photoURL,
+      photoRef: req.body.photoRef,
     });
     const response = {
       status: 200,
