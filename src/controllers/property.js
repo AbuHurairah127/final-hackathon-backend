@@ -105,7 +105,6 @@ const likeProperty = async (req, res) => {
       status: 200,
       message: "Successfully added to your wishlist.",
     };
-    console.log(response, "response");
     res.json(response);
   } catch (error) {
     let response = {

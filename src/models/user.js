@@ -8,6 +8,7 @@ const userSchema = new Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
   phoneNumber: { type: String, required: true },
+  likedProperties: { type: [String] },
   createdAt: {
     type: Date,
     default: Date.now,

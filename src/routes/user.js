@@ -27,4 +27,5 @@ router.post(
 );
 // Fetching Users Data
 router.post("/user-data", authUser, authController.userData);
+router.put("/like-property", authUser, authController.likedProperties);
 module.exports = router;

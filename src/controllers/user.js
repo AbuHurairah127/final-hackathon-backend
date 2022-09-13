@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const JWT_SECRET_KEY = process.env.SECRET_KEY;
 const User = require("../models/user");
 const { validationResult } = require("express-validator");
+const user = require("../models/user");
 const register = async (req, res) => {
   try {
     /* Checking if the request body has any errors. If it does, it will return a 400 status code with the
@@ -84,8 +85,27 @@ const userData = async (req, res) => {
     res.status(500).json("Internal server error");
   }
 };
+const likedProperties = async (req, res) => {
+  try {
+    const likedProperties = {
+      likedProperties: req.body.likedProperties,
+    };
+    let likeProperty = await user.findByIdAndUpdate(
+      { _id: req.user.id },
+      likedProperties
+    );
+    let response = {
+      status: 200,
+      message: "Liked properties updated",
+    };
+    res.json(response);
+  } catch (error) {
+    res.status(500).json("Internal server error");
+  }
+};
 module.exports = {
   register,
   login,
   userData,
+  likedProperties,
 };
